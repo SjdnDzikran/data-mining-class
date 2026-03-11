@@ -1,0 +1,52 @@
+project:
+  name: "Repplikasi Metodologi Prediksi Penyakit Jantung"
+  language: "id"
+  random_state: 42
+
+paths:
+  raw_data: "data/raw/statlog_cleveland_hungary_final.csv"
+  processed_data: "data/processed"
+  tables: "results/tables"
+  figures: "results/figures"
+  submission_dir: "submission_bundle"
+  submission_zip: "submission_bundle.zip"
+
+data:
+  dataset_urls:
+    - "https://raw.githubusercontent.com/akmand/datasets/main/heart_statlog_cleveland_hungary_final.csv"
+    - "https://raw.githubusercontent.com/mrdbourke/zero-to-mastery-ml/master/data/heart-disease.csv"
+  local_fallback_paths:
+    - "data/raw/statlog_cleveland_hungary_final.csv"
+  test_size: 0.2
+
+features:
+  target_candidates:
+    - "target"
+    - "heartdisease"
+    - "num"
+    - "class"
+    - "label"
+    - "output"
+  categorical_candidates:
+    - "sex"
+    - "cp"
+    - "chestpaintype"
+    - "fbs"
+    - "fastingbs"
+    - "restecg"
+    - "exerciseangina"
+    - "exang"
+    - "slope"
+    - "stslope"
+    - "thal"
+    - "ca"
+
+cv:
+  folds: 5
+  shuffle: true
+
+search:
+  random_n_iter: 40
+
+models:
+  enable_stacking_grid: true
